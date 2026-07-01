@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статья — APEX FIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .article-section {
+    padding: 120px 2rem 80px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    transition: color var(--transition);
+  }
+  .article-back:hover { color: var(--neon); }
+  .article-tag {
+    display: inline-block;
+    background: var(--neon-dim);
+    color: var(--neon);
+    border: 1px solid rgba(57,255,20,0.3);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .article-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--gray);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .article-emoji-hero {
+    width: 100%;
+    height: 280px;
+    background: var(--card);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .article-emoji-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(57,255,20,0.07) 0%, transparent 70%);
+  }
+  .article-body {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .article-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin: 2.5rem 0 1rem;
+  }
+  .article-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 1.8rem 0 0.7rem;
+  }
+  .article-body p { margin-bottom: 1.2rem; }
+  .article-body strong { color: var(--white); font-weight: 700; }
+  .article-body .highlight {
+    background: var(--neon-dim);
+    border-left: 3px solid var(--neon);
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.8rem 0;
+    color: var(--white);
+    font-style: italic;
+  }
+  .article-body ul, .article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .article-body li { margin-bottom: 0.5rem; }
+  .article-body .tip-box {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .article-body .tip-box-title {
+    color: var(--neon);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .article-cta {
+    background: var(--card);
+    border: 1px solid rgba(57,255,20,0.2);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .article-cta h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+  }
+  .article-cta p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .related-section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem 80px;
+  }
+  .related-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .related-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+    display: block;
+  }
+  .related-card:hover {
+    border-color: rgba(57,255,20,0.3);
+    transform: translateY(-3px);
+  }
+  .related-card-emoji { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .related-card-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--neon);
+    margin-bottom: 0.5rem;
+  }
+  .related-card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.4;
+  }
+</style>
+<!-- Фавикон — День 26-28 -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#39FF14">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#39FF14">
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">APEX<span>FIT</span><span class="logo-dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="schedule.html">Расписание</a></li>
+      <li><a href="coach.html">Тренеры</a></li>
+      <li><a href="money.html">Цены</a></li>
+      <li><a href="blog.html" class="active">Блог</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="onlinezap.html" class="nav-cta">Записаться</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="article-section" id="articleSection"></div>
+<div class="related-section" id="relatedSection"></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">APEX<span>FIT</span></div>
+        <p class="footer-tagline">Фитнес-клуб нового поколения. Профессиональные тренеры, современное оборудование и атмосфера победы.</p>
+        <div class="footer-socials"><a class="social-btn" href="#">VK</a><a class="social-btn" href="#">MAX</a></div>
+      </div>
+      <div><div class="footer-col-title">Навигация</div><ul class="footer-links"><li><a href="index.html">Главная</a></li><li><a href="schedule.html">Расписание</a></li><li><a href="coach.html">Тренеры</a></li><li><a href="money.html">Цены</a></li><li><a href="blog.html">Блог</a></li></ul></div>
+      <div><div class="footer-col-title">Услуги</div><ul class="footer-links"><li><a href="#">Групповые занятия</a></li><li><a href="#">Персональные тренировки</a></li><li><a href="#">Нутрициология</a></li><li><a href="#">Сауна и SPA</a></li></ul></div>
+      <div><div class="footer-col-title">Контакты</div><ul class="footer-links"><li><a href="tel:+79002345678">+7 (900) 234-56-78</a></li><li><a href="mailto:info@apexfit.ru">info@apexfit.ru</a></li><li><a href="#">ул. Красная, 123</a></li><li><a href="#">Ленинградская, 350000</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 APEX FIT. Все права защищены.</span><span>Политика конфиденциальности · Оферта</span></div>
+  </div>
+</footer>
+
+<div class="floating-cta" id="floatingCta"><a href="onlinezap.html" class="floating-btn">⚡Записаться</a></div>
+
+<div class="mobile-nav-bar">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon">🏠</span>Главная</a>
+    <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon">📅</span>Расписание</a>
+    <a href="onlinezap.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚡</span>Запись</a>
+    <a href="coach.html" class="mobile-nav-item"><span class="mobile-nav-icon">👤</span>Тренеры</a>
+    <a href="money.html" class="mobile-nav-item"><span class="mobile-nav-icon">💳</span>Цены</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+const articles = [
+  {
+    id: 0,
+    title: '5 ошибок в технике приседа, которые мешают вашему прогрессу',
+    tag: 'Тренировки', cat: 'training', emoji: '🏋️', date: '1 июн 2026', read: '5 мин',
+    content: `
+      <h2>Почему техника важнее веса</h2>
+      <p>Присед — король упражнений. Он задействует квадрицепсы, ягодицы, бицепс бедра, кор и даже верхнюю часть спины. Но именно его сложность делает присед лидером по количеству технических ошибок среди посетителей зала.</p>
+      <div class="highlight">«Добавить 10 кг к штанге при плохой технике — значит добавить 10 кг нагрузки на коленные суставы, а не на мышцы» — Александр Волков, тренер APEX FIT</div>
+      <h2>Ошибка №1: Колени уходят внутрь</h2>
+      <p>Вальгусное схлопывание коленей — самая опасная и распространённая ошибка. Она возникает из-за слабых ягодичных мышц и недостаточной подвижности голеностопа.</p>
+      <div class="tip-box"><div class="tip-box-title">💡 Как исправить</div>Представьте, что раздвигаете пол ногами в стороны. Выполняйте приседания с резинкой чуть выше колен — она создаст сопротивление и заставит ягодицы работать активнее.</div>
+      <h2>Ошибка №2: Пятки отрываются от пола</h2>
+      <p>Если в нижней точке приседа пятки тянутся вверх — у вас недостаточная подвижность голеностопного сустава. В результате тело вынуждено компенсировать: наклон корпуса увеличивается, нагрузка уходит на спину вместо ног.</p>
+      <p><strong>Решение:</strong> ежедневно растягивайте икроножные мышцы и ахиллово сухожилие. Попробуйте пристроить под пятки небольшие блины — это временный лайфхак, пока работаете над подвижностью.</p>
+      <h2>Ошибка №3: Наклон корпуса вперёд</h2>
+      <p>Слишком сильный наклон туловища переносит нагрузку с ног на нижнюю часть спины. Причины: слабый кор, негибкие бёдра или неправильное положение штанги на спине.</p>
+      <div class="tip-box"><div class="tip-box-title">💡 Как исправить</div>Держите взгляд чуть выше горизонта — это автоматически выпрямляет спину. Укрепляйте кор планками и «мёртвыми» жуками.</div>
+      <h2>Ошибка №4: Неполная амплитуда</h2>
+      <p>«Полуприсед» — когда бёдра не опускаются хотя бы до параллели с полом — резко снижает эффективность упражнения. Квадрицепсы и ягодицы не получают полной нагрузки, результат минимален.</p>
+      <p>Исключение — если у вас травма или ограниченная подвижность: в этом случае работайте в комфортной амплитуде и постепенно увеличивайте её.</p>
+      <h2>Ошибка №5: Задержка дыхания не в том месте</h2>
+      <p>Правильное дыхание критично для безопасности. Вдох делается перед опусканием, брюшной пресс напрягается (эффект «живота под давлением»), и только на подъёме выдыхаем.</p>
+      <div class="highlight">Никогда не выдыхайте в нижней точке — в этот момент позвоночник максимально нагружен, и давление внутри живота защищает его.</div>
+      <h2>Итог</h2>
+      <p>Исправление техники — это инвестиция. Потратьте месяц на работу с лёгким весом, отработайте каждый пункт, и результаты не заставят себя ждать. Запишитесь на персональную тренировку в APEX FIT — наши тренеры сделают видеоразбор вашего приседа и составят план коррекции.</p>
+    `
+  },
+  {
+    id: 1,
+    title: 'Питание до и после тренировки: что есть и когда',
+    tag: 'Питание', cat: 'nutrition', emoji: '🥗', date: '30 май 2026', read: '7 мин',
+    content: `
+      <h2>Почему питание вокруг тренировки так важно</h2>
+      <p>Вы можете тренироваться идеально, но если питание не настроено — прогресс будет в разы медленнее. Правильно подобранные приёмы пищи до и после тренировки влияют на энергию, производительность и скорость восстановления.</p>
+      <h2>Питание перед тренировкой</h2>
+      <h3>За 2–3 часа до тренировки</h3>
+      <p>Это оптимальное время для полноценного приёма пищи. Цель — обеспечить организм «медленными» углеводами и белком, не создавая тяжести в желудке.</p>
+      <div class="tip-box"><div class="tip-box-title">✅ Хорошие варианты</div><ul><li>Гречка с куриной грудкой и овощами</li><li>Рис с рыбой и салатом</li><li>Овсянка с яйцами и бананом</li><li>Цельнозерновой хлеб с творогом</li></ul></div>
+      <h3>За 30–60 минут до тренировки</h3>
+      <p>Если не успели поесть заранее — лёгкий перекус с быстрыми углеводами и немного белка. Не перегружайте желудок.</p>
+      <ul><li>Банан + горсть орехов</li><li>Греческий йогурт с мёдом</li><li>Протеиновый батончик</li><li>Фрукт + 100 г творога</li></ul>
+      <div class="highlight">Избегайте жирной пищи и клетчатки прямо перед тренировкой — они замедляют пищеварение и могут вызвать дискомфорт в зале.</div>
+      <h2>Питание после тренировки</h2>
+      <h3>Анаболическое окно: миф или реальность?</h3>
+      <p>Долгое время считалось, что нужно есть в первые 30 минут после тренировки. Современные исследования показывают: «окно» гораздо шире — <strong>от 1 до 2 часов</strong>. Это хорошая новость — не нужно судорожно есть прямо в раздевалке.</p>
+      <h3>Что есть после тренировки</h3>
+      <p>После нагрузки у организма две задачи: восполнить запасы гликогена (углеводы) и запустить восстановление мышц (белок).</p>
+      <div class="tip-box"><div class="tip-box-title">✅ Идеальные блюда после тренировки</div><ul><li>Куриная грудка + картофель или рис</li><li>Омлет из 3–4 яиц с цельнозерновым хлебом</li><li>Творог (200 г) с бананом или ягодами</li><li>Протеиновый коктейль + фрукт (быстрый вариант)</li></ul></div>
+      <h2>Про воду</h2>
+      <p>Гидратация — отдельная история. Пейте воду <strong>до, во время и после</strong> тренировки. Ориентир: 500 мл за час до, 150–250 мл каждые 15–20 минут во время, и восполните потери после (обычно 400–800 мл).</p>
+      <h2>Главный вывод</h2>
+      <p>Никакое «спортивное питание» не заменит грамотно выстроенного рациона. Хотите индивидуальный план питания под ваши цели — запишитесь на консультацию к нутрициологу APEX FIT.</p>
+    `
+  },
+  {
+    id: 2,
+    title: 'Как не бросить тренировки через месяц: психология мотивации',
+    tag: 'Мотивация', cat: 'motivation', emoji: '🔥', date: '28 май 2026', read: '6 мин',
+    content: `
+      <h2>Почему мы бросаем</h2>
+      <p>Статистика неумолима: большинство людей, начавших тренироваться, бросают это дело в первые три месяца. Пик отказов — около 6 недель. Почему это происходит и как выбраться из этой ловушки?</p>
+      <div class="highlight">«Мотивация — это то, что заставляет вас начать. Привычка — это то, что заставляет вас продолжать.» — Джим Рон</div>
+      <h2>Проблема «начального запала»</h2>
+      <p>В первые недели вы заряжены. Новый абонемент, красивая форма, вдохновляющие фото в социальных сетях. Дофамин зашкаливает. Но этот запал — <strong>не мотивация, а эмоциональный всплеск</strong>. Он неизбежно спадает.</p>
+      <p>Задача — выстроить систему, которая работает без эмоций.</p>
+      <h2>Стратегия 1: Маленькие победы</h2>
+      <p>Большие цели («похудеть на 20 кг») демотивируют, потому что результат далеко. Разбейте цель на микрошаги:</p>
+      <ul><li>Прийти в зал 3 раза на этой неделе</li><li>Добавить 2,5 кг к жиму за месяц</li><li>Пробежать 5 км без остановки</li></ul>
+      <div class="tip-box"><div class="tip-box-title">💡 Совет</div>Ведите дневник тренировок. Вид конкретных цифр прогресса — мощнейший мотиватор.</div>
+      <h2>Стратегия 2: Сделайте тренировки неизбежными</h2>
+      <p>Джеймс Клир в книге «Атомные привычки» описывает принцип «уменьшения трения». Сделайте тренировку максимально лёгкой для начала:</p>
+      <ul><li>Собирайте сумку с вечера</li><li>Выбирайте зал по дороге с работы</li><li>Назначайте тренировки на конкретное время, как встречи</li><li>Найдите партнёра для тренировок</li></ul>
+      <h2>Стратегия 3: Переформулируйте «зачем»</h2>
+      <p>«Хочу похудеть» — слабая мотивация, потому что вся она снаружи. «Хочу быть энергичным, здоровым, сильным» — внутренняя мотивация, которая работает долго.</p>
+      <div class="highlight">Исследования показывают: люди, тренирующиеся ради здоровья и самочувствия, занимаются в среднем в 2,5 раза дольше тех, кто тренируется только ради внешнего вида.</div>
+      <h2>Стратегия 4: Плохая тренировка лучше пропуска</h2>
+      <p>Вы не выспались. Нет сил. Не хочется. Всё равно идите в зал. Пусть тренировка будет на 50% от обычного — это нормально. Главное — не разрушить привычку. Пропуски имеют свойство накапливаться.</p>
+      <h2>Итог</h2>
+      <p>Мотивация — ненадёжный инструмент. Система, окружение и правильные привычки — вот что реально работает. В APEX FIT наши тренеры не просто составляют программу, но и помогают выстроить устойчивый ритм тренировок.</p>
+    `
+  },
+  {
+    id: 3,
+    title: 'Открытие нового зала функционального тренинга',
+    tag: 'Новости', cat: 'news', emoji: '🎉', date: '25 май 2026', read: '3 мин',
+    content: `
+      <h2>APEX FIT расширяется</h2>
+      <p>Мы рады сообщить об открытии нового зала функционального тренинга площадью 120 м². Это стало возможным благодаря вам — нашим участникам, чья преданность и активность вдохновляет нас развиваться.</p>
+      <div class="highlight">Новый зал уже доступен для всех обладателей абонементов «Стандарт» и «Премиум» без доплаты.</div>
+      <h2>Что появилось в новом зале</h2>
+      <div class="tip-box"><div class="tip-box-title">🏋️ Новое оборудование</div><ul><li><strong>TRX-система</strong> — 8 подвесных петель для тренировки с весом тела</li><li><strong>Гири</strong> — полный набор от 8 до 48 кг</li><li><strong>Батуты</strong> — 4 профессиональных батута для кардио и координации</li><li><strong>Канаты для боя (battle ropes)</strong> — 2 комплекта длиной 15 м</li><li><strong>Слэм-болы и медицинские мячи</strong> — от 3 до 20 кг</li><li><strong>Горизонтальные лестницы и барьеры</strong> для скоростной работы</li><li><strong>Плиометрические боксы</strong> — 3 высоты: 30, 45 и 60 см</li></ul></div>
+      <h2>Новые групповые программы</h2>
+      <p>Вместе с залом запускаются три новые групповые программы:</p>
+      <ul><li><strong>Functional Power</strong> — силовой функционал с гирями и TRX, пн/ср/пт в 07:30</li><li><strong>Jump &amp; Burn</strong> — кардио на батутах, вт/чт в 18:00 и сб в 10:00</li><li><strong>Athletic Circuit</strong> — круговые тренировки для общей физической подготовки, пн–пт в 20:00</li></ul>
+      <h2>Как попасть в новый зал</h2>
+      <p>Зал открыт по расписанию групповых занятий. В остальное время доступ — по предварительной записи через приложение или сайт. Записывайтесь заранее: первые недели — повышенный спрос!</p>
+      <h2>Слово директора</h2>
+      <div class="highlight">«Мы строили этот зал с одной мыслью — дать вам пространство для нового вида нагрузки. Функциональный тренинг — это не мода, это основа физической готовности к реальной жизни» — Максим Орлов, директор APEX FIT</div>
+    `
+  },
+  {
+    id: 4,
+    title: 'Кардио vs Силовые: что выбрать для похудения?',
+    tag: 'Тренировки', cat: 'training', emoji: '⚖️', date: '22 май 2026', read: '8 мин',
+    content: `
+      <h2>Вопрос, который задают все</h2>
+      <p>«Мне нужно похудеть — значит нужно бегать?» Или: «Я слышал, что мышцы сжигают жир, значит надо качаться?» Оба лагеря существуют уже десятилетия. Давайте разберёмся с помощью науки.</p>
+      <h2>Кардио: за и против</h2>
+      <h3>Что происходит во время кардио</h3>
+      <p>Кардиотренировка (бег, велосипед, эллипс) сжигает калории <strong>в момент выполнения</strong>. 30 минут бега в среднем темпе — около 280–350 ккал для человека весом 70 кг.</p>
+      <div class="tip-box"><div class="tip-box-title">✅ Плюсы кардио</div><ul><li>Высокий расход калорий за тренировку</li><li>Польза для сердечно-сосудистой системы</li><li>Снижение стресса, улучшение настроения</li><li>Можно заниматься без оборудования</li></ul></div>
+      <div class="tip-box"><div class="tip-box-title">❌ Минусы кардио</div><ul><li>При большом объёме разрушает мышечную ткань</li><li>Метаболизм после кардио восстанавливается быстро</li><li>Монотонность приводит к снижению мотивации</li></ul></div>
+      <h2>Силовые: за и против</h2>
+      <h3>Что происходит во время силовой тренировки</h3>
+      <p>Сама по себе силовая тренировка сжигает меньше калорий, чем кардио. Но главный козырь — <strong>EPOC (избыточное потребление кислорода после нагрузки)</strong>. После хорошей силовой тренировки организм продолжает сжигать калории ещё 24–48 часов.</p>
+      <div class="highlight">Каждый дополнительный килограмм мышечной массы сжигает около 50–70 дополнительных калорий в сутки даже в состоянии покоя.</div>
+      <div class="tip-box"><div class="tip-box-title">✅ Плюсы силовых</div><ul><li>Повышение базального метаболизма</li><li>Эффект дожигания калорий после тренировки</li><li>Формирование рельефа тела</li><li>Укрепление костей и суставов</li></ul></div>
+      <h2>Что говорит наука</h2>
+      <p>Мета-анализ 2022 года (Journal of Strength and Conditioning Research) показал: <strong>комбинация кардио и силовых тренировок даёт лучший результат</strong> для снижения жировой массы, чем каждый из видов по отдельности.</p>
+      <h2>Наш ответ: и то, и другое</h2>
+      <p>Оптимальная схема для похудения:</p>
+      <ul><li><strong>3 силовые тренировки в неделю</strong> — для сохранения мышц и разгона метаболизма</li><li><strong>2 кардио-сессии</strong> — LISS (длинное, умеренное кардио) или HIIT (интервальное)</li><li><strong>Ежедневная активность</strong> — 7–10 тысяч шагов, лифт — табу</li></ul>
+      <div class="highlight">И главное: никакие тренировки не помогут, если питание не в порядке. Дефицит калорий — основа похудения. Тренировки — инструмент его создания и сохранения результата.</div>
+    `
+  },
+  {
+    id: 5,
+    title: 'Протеин: мифы и реальность. Разбираем с нутрициологом',
+    tag: 'Питание', cat: 'nutrition', emoji: '🥛', date: '20 май 2026', read: '9 мин',
+    content: `
+      <h2>Белок: главный нутриент в фитнесе</h2>
+      <p>Белок — строительный материал для мышц. Но вокруг него столько мифов, что разобраться сложно даже опытным спортсменам. Наш нутрициолог Елена Нечаева разбирает самые популярные заблуждения.</p>
+      <h2>Миф №1: «Нужно есть 3–4 г белка на кг веса»</h2>
+      <p><strong>Реальность:</strong> Большинству людей достаточно <strong>1,6–2,2 г на кг веса тела</strong>. Это подтверждают десятки исследований. Более высокие дозы не дают дополнительного роста мышц, но нагружают почки.</p>
+      <div class="tip-box"><div class="tip-box-title">📊 Ориентиры по количеству белка</div><ul><li>Обычный человек без спорта: 0,8–1,0 г/кг</li><li>Тренирующийся любитель: 1,6–2,0 г/кг</li><li>Спортсмен на сушке: 2,0–2,4 г/кг</li><li>Профессиональный атлет: до 2,5 г/кг</li></ul></div>
+      <h2>Миф №2: «Протеиновый коктейль обязателен»</h2>
+      <p><strong>Реальность:</strong> Протеиновый порошок — это просто удобная форма белка, не более. Если вы получаете достаточно белка из обычной еды (мясо, рыба, яйца, творог, бобовые), добавки не нужны.</p>
+      <div class="highlight">Стакан творога (200 г) содержит около 34 г белка — столько же, сколько средняя порция протеинового коктейля. И стоит в разы дешевле.</div>
+      <h2>Миф №3: «Белок нужно есть сразу после тренировки»</h2>
+      <p><strong>Реальность:</strong> Анаболическое окно гораздо шире, чем думали раньше. Исследования 2020-х годов показывают: главное — суточное количество белка, а не точное время приёма.</p>
+      <p>Старайтесь равномерно распределить белок по 3–5 приёмам пищи. Каждый приём — около 25–40 г белка для максимального синтеза мышечного протеина.</p>
+      <h2>Миф №4: «От белка толстеют»</h2>
+      <p><strong>Реальность:</strong> Белок — самый «сытный» макронутриент. Он снижает аппетит, ускоряет метаболизм и сложнее всего откладывается в жир. Лишний вес возникает от избытка <strong>калорий</strong>, а не от избытка белка.</p>
+      <h2>Лучшие источники белка</h2>
+      <div class="tip-box"><div class="tip-box-title">🍗 Топ продуктов по содержанию белка на 100 г</div><ul><li>Куриная грудка — 31 г</li><li>Тунец консервированный — 26 г</li><li>Творог 0% — 17–18 г</li><li>Яйца — 6 г / 1 яйцо</li><li>Нут варёный — 9 г</li><li>Греческий йогурт — 10 г</li><li>Лосось — 25 г</li></ul></div>
+      <h2>Вывод</h2>
+      <p>Белок важен, но без фанатизма. Ешьте разнообразно, следите за общим рационом и консультируйтесь со специалистом. Нутрициолог APEX FIT составит персональный план питания с учётом ваших целей, образа жизни и вкусовых предпочтений.</p>
+    `
+  }
+];
+
+function renderArticle() {
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id') || '0');
+  const article = articles[id] || articles[0];
+  document.title = article.title + ' — APEX FIT';
+
+  const section = document.getElementById('articleSection');
+  section.innerHTML = `
+    <a href="blog.html" class="article-back">← Назад в блог</a>
+    <span class="article-tag">${article.tag}</span>
+    <h1 class="article-title reveal">${article.title}</h1>
+    <div class="article-meta reveal">
+      <span>📅 ${article.date}</span>
+      <span>🕐 ${article.read} чтения</span>
+    </div>
+    <div class="article-emoji-hero reveal"><span>${article.emoji}</span></div>
+    <div class="article-body reveal">${article.content}</div>
+    <div class="article-cta reveal">
+      <h3>ГОТОВЫ НАЧАТЬ?</h3>
+      <p>Запишитесь на тренировку в APEX FIT и получите первый результат уже через месяц.</p>
+      <a href="onlinezap.html" class="btn-primary"><span>⚡</span> Записаться онлайн</a>
+    </div>
+  `;
+
+  const related = articles.filter(a => a.id !== id).slice(0, 3);
+  document.getElementById('relatedSection').innerHTML = `
+    <div class="related-title">Читайте также</div>
+    <div class="related-grid">
+      ${related.map(a => `
+        <a href="blog-article.html?id=${a.id}" class="related-card">
+          <div class="related-card-emoji">${a.emoji}</div>
+          <div class="related-card-tag">${a.tag}</div>
+          <div class="related-card-title">${a.title}</div>
+        </a>
+      `).join('')}
+    </div>
+  `;
+
+  setTimeout(initReveal, 50);
+}
+
+document.addEventListener('DOMContentLoaded', renderArticle);
+</script>
+</body>
+</html>

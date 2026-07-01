@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Онлайн-запись — APEX FIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- Фавикон — День 26-28 -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#39FF14">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#39FF14">
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">APEX<span>FIT</span><span class="logo-dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="schedule.html">Расписание</a></li>
+      <li><a href="coach.html">Тренеры</a></li>
+      <li><a href="money.html">Цены</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="profile.html">Личный кабинет</a></li>
+      <li><a href="onlinezap.html" class="nav-cta active">Записаться</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="booking-section">
+  <div class="booking-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Онлайн-запись</div>
+      <h2 class="section-title">ЗАПИШИТЕСЬ <span class="accent">ОНЛАЙН</span></h2>
+      <p class="section-desc">Всего 4 шага — и тренировка у вас в кармане.</p>
+    </div>
+
+    <div class="booking-steps reveal">
+      <div class="step-item active" id="step-1"><div class="step-num">1</div><div class="step-label">Услуга</div></div>
+      <div class="step-item" id="step-2"><div class="step-num">2</div><div class="step-label">Тренер</div></div>
+      <div class="step-item" id="step-3"><div class="step-num">3</div><div class="step-label">Дата и время</div></div>
+      <div class="step-item" id="step-4"><div class="step-num">4</div><div class="step-label">Подтверждение</div></div>
+    </div>
+
+    <div class="booking-form reveal">
+      <!-- Step 1 -->
+      <div class="form-step active" id="formStep1">
+        <h3 class="form-title">Выберите услугу</h3>
+        <p class="form-subtitle">Какой вид тренировки вас интересует?</p>
+        <div class="service-options" id="serviceOptions">
+          <div class="service-option" onclick="selectService(this, 'Групповая тренировка')"><div class="service-icon">🧑‍🤝‍🧑</div><div class="service-name">Групповая</div><div class="service-price">от 500 ₽</div></div>
+          <div class="service-option" onclick="selectService(this, 'Персональная тренировка')"><div class="service-icon">🏅</div><div class="service-name">Персональная</div><div class="service-price">от 2000 ₽</div></div>
+          <div class="service-option" onclick="selectService(this, 'Спец. программа')"><div class="service-icon">⭐</div><div class="service-name">Спец. программа</div><div class="service-price">от 1500 ₽</div></div>
+          <div class="service-option" onclick="selectService(this, 'Консультация диетолога')"><div class="service-icon">🥗</div><div class="service-name">Диетология</div><div class="service-price">от 3000 ₽</div></div>
+        </div>
+        <div class="form-nav"><div></div><button class="btn-primary" onclick="nextStep(2)">Далее →</button></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" id="formStep2">
+        <h3 class="form-title">Выберите тренера</h3>
+        <p class="form-subtitle">Выберите специалиста или оставьте на наш выбор</p>
+        <div class="service-options" id="trainerOptions">
+          <div class="service-option" onclick="selectService(this, 'Любой доступный')"><div class="service-icon">🎲</div><div class="service-name">Любой доступный</div><div class="service-price">Мы подберём</div></div>
+          <div class="service-option" onclick="selectService(this, 'Александр Волков')"><div class="service-icon">💪</div><div class="service-name">Александр Волков</div><div class="service-price">Силовые</div></div>
+          <div class="service-option" onclick="selectService(this, 'Мария Соколова')"><div class="service-icon">🧘</div><div class="service-name">Мария Соколова</div><div class="service-price">Йога / Пилатес</div></div>
+          <div class="service-option" onclick="selectService(this, 'Дмитрий Кузнецов')"><div class="service-icon">🏃</div><div class="service-name">Дмитрий Кузнецов</div><div class="service-price">Кардио / Кроссфит</div></div>
+        </div>
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(1)">← Назад</button><button class="btn-primary" onclick="nextStep(3)">Далее →</button></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" id="formStep3">
+        <h3 class="form-title">Выберите дату и время</h3>
+        <p class="form-subtitle">Доступные слоты для выбранного тренера</p>
+        <div class="cal-month"><button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button><div class="cal-month-name" id="calMonthName"></div><button class="cal-nav-btn" onclick="changeMonth(1)">›</button></div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <p style="font-size:0.85rem; color:var(--gray); margin-bottom:1rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Доступное время</p>
+        <div class="time-slots" id="timeSlots"></div>
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(2)">← Назад</button><button class="btn-primary" onclick="nextStep(4)">Далее →</button></div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step" id="formStep4">
+        <h3 class="form-title">Подтверждение</h3>
+        <p class="form-subtitle">Проверьте данные и введите контактную информацию</p>
+        <div class="confirm-summary"><div class="confirm-row"><span class="confirm-label">Услуга</span><span class="confirm-val" id="confirmService">—</span></div><div class="confirm-row"><span class="confirm-label">Тренер</span><span class="confirm-val" id="confirmTrainer">—</span></div><div class="confirm-row"><span class="confirm-label">Дата</span><span class="confirm-val" id="confirmDate">—</span></div><div class="confirm-row"><span class="confirm-label">Время</span><span class="confirm-val" id="confirmTime">—</span></div></div>
+        <div class="form-row"><div class="form-group"><label>Имя</label><input type="text" id="inputName" placeholder="Ваше имя"></div><div class="form-group"><label>Телефон</label><input type="tel" id="inputPhone" placeholder="+7 (___) ___-__-__"></div></div>
+        <div class="form-group" style="margin-bottom:1rem;"><label>Email</label><input type="email" id="inputEmail" placeholder="example@mail.ru"></div>
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(3)">← Назад</button><button class="btn-primary" onclick="submitBooking()">✓ Подтвердить запись</button></div>
+      </div>
+
+      <!-- Success -->
+      <div class="form-step" id="formStepSuccess">
+        <div class="success-message"><div class="success-icon">🎉</div><div class="success-title">ЗАПИСЬ ПОДТВЕРЖДЕНА!</div><p class="success-desc">Мы отправили подтверждение на ваш email. До встречи в зале!</p><button class="btn-primary" style="margin-top:2rem;" onclick="resetBooking()">Записаться ещё раз</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">APEX<span>FIT</span></div><p class="footer-tagline">Фитнес-клуб нового поколения. Профессиональные тренеры, современное оборудование и атмосфера победы.</p><div class="footer-socials"><a class="social-btn" href="#">VK</a><a class="social-btn" href="#">MAX</a></div></div>
+      <div><div class="footer-col-title">Навигация</div><ul class="footer-links"><li><a href="index.html">Главная</a></li><li><a href="schedule.html">Расписание</a></li><li><a href="coach.html">Тренеры</a></li><li><a href="money.html">Цены</a></li><li><a href="blog.html">Блог</a></li><li><a href="profile.html">Личный кабинет</a></li></ul></div>
+      <div><div class="footer-col-title">Услуги</div><ul class="footer-links"><li><a href="#">Групповые занятия</a></li><li><a href="#">Персональные тренировки</a></li><li><a href="#">Нутрициология</a></li><li><a href="#">Сауна и SPA</a></li><li><a href="#">Детский фитнес</a></li></ul></div>
+      <div><div class="footer-col-title">Контакты</div><ul class="footer-links"><li><a href="tel:+79002345678">+7 (900) 234-56-78</a></li><li><a href="mailto:info@apexfit.ru">info@apexfit.ru</a></li><li><a href="#">ул. Красная, 123</a></li><li><a href="#">Ленинградская, 350000</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 APEX FIT. Все права защищены.</span><span>Политика конфиденциальности · Оферта</span></div>
+  </div>
+</footer>
+
+<div class="mobile-nav-bar">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon">🏠</span>Главная</a>
+    <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon">📅</span>Расписание</a>
+    <a href="onlinezap.html" class="mobile-nav-item active"><span class="mobile-nav-icon">⚡</span>Запись</a>
+    <a href="coach.html" class="mobile-nav-item"><span class="mobile-nav-icon">👤</span>Тренеры</a>
+    <a href="money.html" class="mobile-nav-item"><span class="mobile-nav-icon">💳</span>Цены</a>
+    <a href="profile.html" class="mobile-nav-item"><span class="mobile-nav-icon">👤</span>Кабинет</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
